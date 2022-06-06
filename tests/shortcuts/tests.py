@@ -1,3 +1,4 @@
+from django.shortcuts import make_toast
 from django.test import SimpleTestCase, override_settings
 from django.test.utils import require_jinja2
 
@@ -35,3 +36,8 @@ class RenderTests(SimpleTestCase):
         self.assertEqual(response.content, b"DTL\n")
         response = self.client.get("/render/using/?using=jinja2")
         self.assertEqual(response.content, b"Jinja2\n")
+
+
+class MakeToastTests(SimpleTestCase):
+    def test_make_toast(self):
+        self.assertEqual(make_toast(), 'toast')
